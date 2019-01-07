@@ -1,56 +1,53 @@
 import React, {Component} from 'react';
-import {Col, Grid, Row} from "react-bootstrap";
+import {Col, Grid, Row, Button} from "react-bootstrap";
+import {AppContext} from "../App";
 
 class Image extends Component {
-
-    constructor(props) {
-        super(props);
-
-        this.handleInputChange = this.onInputChange.bind(this);
-        this.handleFileUpload = this.onFileUpload.bind(this);
-    }
-
-    onInputChange(e) {
-        this.props.handleChange(e);
-    }
-
-    onFileUpload(e) {
-        this.props.handleFileUpload(e);
-    }
 
     render() {
 
         return (
-            <div className="App">
-                <Grid className="App-input">
-                    <Row>
-                        <Col xs={8} className="header">Image Settings</Col>
-                    </Row>
-                    <Row>
-                        <Col xs={3}>Use Existing IPFS Hash?</Col>
-                        <Col xs={5}>
-                            <input
-                                type="text"
-                                name="ipfsImageHash"
-                                style={{width: "350px"}}
-                                defaultValue={this.props.ipfsImageHash}
-                                onChange={this.handleInputChange}
-                            />
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col xs={3}>Choose image to send to IPFS</Col>
-                        <Col xs={5}>
-                            <input
-                                type="file"
-                                name="imageBuffer"
-                                style={{width: "350px"}}
-                                onChange={this.handleFileUpload}
-                            />
-                        </Col>
-                    </Row>
-                </Grid>
-            </div>
+            <AppContext.Consumer>
+                {({web3ctx, myToken, actions}) => (
+                    <Grid className="App-input">
+                        <Row>
+                            <Col xs={8} className="header">Image Settings</Col>
+                        </Row>
+                        <Row>
+                            <Col xs={3}>Use Existing IPFS Hash?</Col>
+                            <Col xs={5}>
+                                <input
+                                    type="text"
+                                    name="myToken.ipfsImageHash"
+                                    style={{width: "300px"}}
+                                    defaultValue={myToken.ipfsImageHash}
+                                    onChange={actions.handleInputChange}
+                                />
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col xs={3}>Choose image to send to IPFS</Col>
+                            <Col xs={5}>
+                                <input
+                                    type="file"
+                                    style={{width: "350px"}}
+                                    onChange={actions.captureFile}
+                                />
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col xs={5}>&nbsp;</Col>
+                            <Col xs={3}>
+                                <Button onClick={actions.addIpfs}
+                                        style={{alignment: 'right'}}
+                                        disabled={Boolean(!myToken.imageBuffer || myToken.ipfsImageHash)}>
+                                    Upload File
+                                </Button>
+                            </Col>
+                        </Row>
+                    </Grid>
+                )}
+            </AppContext.Consumer>
         );
     }
 }

@@ -16,6 +16,9 @@ ultimately called by the exchange contracts to trade their items. (Note that thi
 does not mean that OpenSea itself has access to the items, simply that the users can list them 
 more easily if they wish to do so).
 
+Rinkeby: `0xedb1b90ac5152587915ff553c7a0b2358ad2598b`
+Mainnet: `0xAEFa27A665d48e19C38437Ba7135c8107BB5928f`
+
 ### Node version
 
 Either make sure you're running a version of node compliant with the `engines` requirement in 
@@ -26,6 +29,12 @@ run `nvm use` to use the correct version of node.
 
 The frontend application can be run against a local node or ganache-cli, or against compliant 
 contracts on any network connected via [MetaMask](https://metamask.io/).
+
+For development in the UI, run:
+```
+yarn install
+yarn start
+```
 
 ### Deploying contracts to a live network
 

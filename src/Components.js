@@ -1,9 +1,9 @@
 import Home from './components/Home';
-import Config from './components/Config';
+import Token from './components/Token';
 import Image from './components/Image';
-import Mint from './components/Mint';
-import Wallet from './components/Wallet';
+import Metadata from './components/Metadata';
+import Status from './components/Status';
 
 export {
-    Home, Config, Image, Mint, Wallet
+    Home, Token, Image, Metadata, Status
 }
