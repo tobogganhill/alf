@@ -2,13 +2,13 @@ import React, {Component} from 'react';
 import {Tabs, TabLink, TabContent} from 'react-tabs-redux';
 import {Grid, Row, Col} from 'react-bootstrap';
 import axios from 'axios';
-import {Home, Token, Image, Metadata, Status} from './Components';
+import {GetMetamask, Home, Token, Image, Metadata, Status} from './Components';
 import web3 from './util/web3';
+import ipfs from './util/ipfs';
 import './assets/App.css';
 import logo from './assets/logo.png'
 import metadata from './assets/metadata-template.json';
 import tokenContract from './assets/contract';
-import ipfs from './util/ipfs';
 
 export const AppContext = React.createContext();
 
@@ -29,10 +29,6 @@ const web3networks = {
         name: 'kovan',
         etherscanUrl: 'https://kovan.etherscan.io/tx/'
     }
-};
-
-const sleep = (milliseconds) => {
-    return new Promise(resolve => setTimeout(resolve, milliseconds))
 };
 
 class App extends Component {
@@ -342,6 +338,9 @@ class App extends Component {
             console.log('Sending from Metamask account: ' + accounts[0] + ' to token address '
                 + myTokenInstance.options.address);
 
+            console.log('DEBUG recipientAddress: ' + this.state.myToken.recipientAddress);
+            console.log('DEBUG ipfsMetadataUrl: ' + this.state.myToken.ipfsMetadataUrl);
+
             // see, this https://web3js.readthedocs.io/en/1.0/web3-eth-contract.html#methods-mymethod-send
             await myTokenInstance.methods.mint(this.state.myToken.recipientAddress, this.state.myToken.ipfsMetadataUrl).send({
                 from: accounts[0]
@@ -402,38 +401,43 @@ class App extends Component {
     };
 
     render() {
-
-        return (
-            <div className='App'>
-                <header className='App-header'>
-                    <img src={logo} align='left' className='App-logo' alt='logo'/>
-                    <h1> Mint your Artists Liberation Front (ALF) Rare Digital Art Token</h1>
-                </header>
-                <AppContext.Provider
-                    value={{
-                        web3ctx: {...this.state.web3ctx},
-                        myToken: {...this.state.myToken},
-                        actions: {...this.state.actions}
-                    }}>
-                    <Grid>
-                        <Row>
-                            <Col xs={8}>
-                                <Tabs selectedTab={this.state.selectedTab} renderActiveTabContentOnly={true}>
-                                    {this.renderTabs()}
-                                </Tabs>
-                            </Col>
-                            <Col xs={4}>
-                                <Row>
-                                    <Col>
-                                        <Status/>
-                                    </Col>
-                                </Row>
-                            </Col>
-                        </Row>
-                    </Grid>
-                </AppContext.Provider>
-            </div>
-        );
+        if (!web3 || typeof web3 == 'undefined' || web3.version.network === 'loading') {
+            return (
+                <GetMetamask/>
+            );
+        } else {
+            return (
+                <div className='App'>
+                    <header className='App-header'>
+                        <img src={logo} align='left' className='App-logo' alt='logo'/>
+                        <h1> Mint your Artists Liberation Front (ALF) Rare Digital Art Token</h1>
+                    </header>
+                    <AppContext.Provider
+                        value={{
+                            web3ctx: {...this.state.web3ctx},
+                            myToken: {...this.state.myToken},
+                            actions: {...this.state.actions}
+                        }}>
+                        <Grid>
+                            <Row>
+                                <Col xs={8}>
+                                    <Tabs selectedTab={this.state.selectedTab} renderActiveTabContentOnly={true}>
+                                        {this.renderTabs()}
+                                    </Tabs>
+                                </Col>
+                                <Col xs={4}>
+                                    <Row>
+                                        <Col>
+                                            <Status/>
+                                        </Col>
+                                    </Row>
+                                </Col>
+                            </Row>
+                        </Grid>
+                    </AppContext.Provider>
+                </div>
+            );
+        }
     }
 }
 

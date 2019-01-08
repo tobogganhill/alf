@@ -63,6 +63,10 @@ class Status extends Component {
                             </Col>
                         </Row>
                         <Row>
+                            <Col xs={2} className='output-label'>Ethereum Token Address</Col>
+                            <Col xs={2}>{Status.getIcon(web3ctx.tokenAddress)}</Col>
+                        </Row>
+                        <Row>
                             <Col xs={2} className='output-label'>
                                 {Status.conditionalLink(myToken.ipfsImageUrl, 'IPFS Image File')}
                             </Col>
@@ -79,10 +83,6 @@ class Status extends Component {
                         <Row>
                             <Col xs={2} className='output-label'>Token Recipient Address</Col>
                             <Col xs={2}>{Status.getIcon(myToken.recipientAddress)}</Col>
-                        </Row>
-                        <Row>
-                            <Col xs={2} className='output-label'>Ethereum Token Address</Col>
-                            <Col xs={2}>{Status.getIcon(web3ctx.tokenAddress)}</Col>
                         </Row>
                         <Row>
                             <Col xs={2} className='output-label'>Tx Hash #</Col>
