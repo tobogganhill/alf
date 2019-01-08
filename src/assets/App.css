@@ -30,8 +30,8 @@
     padding: 20px;
 }
 
-.App-output div[class^="col-xs"] {
-    outline: 1px solid #ddd;
+.output-label {
+    text-align: right;
 }
 
 .header {
