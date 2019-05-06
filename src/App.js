@@ -73,6 +73,7 @@ class App extends Component {
                 ipfsMetadataHash: '',
                 ipfsMetadataUrl: '',
                 recipientAddress: '',
+                newMinterAddress: '',
                 txHash: '',
                 txReceipt: '',
                 blockNumber: '',
@@ -284,7 +285,9 @@ class App extends Component {
         }
     };
 
-    addMinter = async (minterAddress) => {
+    addMinter = async () => {
+
+        const minterAddress = this.state.myToken.newMinterAddress;
 
         if (!App.exists(minterAddress)) {
             console.log('Minter address is required!');
@@ -337,9 +340,6 @@ class App extends Component {
 
             console.log('Sending from Metamask account: ' + accounts[0] + ' to token address '
                 + myTokenInstance.options.address);
-
-            console.log('DEBUG recipientAddress: ' + this.state.myToken.recipientAddress);
-            console.log('DEBUG ipfsMetadataUrl: ' + this.state.myToken.ipfsMetadataUrl);
 
             // see, this https://web3js.readthedocs.io/en/1.0/web3-eth-contract.html#methods-mymethod-send
             await myTokenInstance.methods.mint(this.state.myToken.recipientAddress, this.state.myToken.ipfsMetadataUrl).send({

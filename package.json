@@ -22,7 +22,7 @@
     "fs-extra": "^5.0.0",
     "ipfs-api": "^18.1.1",
     "keccak": "^1.4.0",
-    "openzeppelin-solidity": "^2.0.0",
+    "openzeppelin-solidity": "2.0.0",
     "react": "^16.2.0",
     "react-bootstrap": "^0.32.1",
     "react-dom": "^16.2.0",

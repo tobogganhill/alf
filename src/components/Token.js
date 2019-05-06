@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Col, Grid, Row} from "react-bootstrap";
+import {Col, Grid, Row, Button} from "react-bootstrap";
 import {AppContext} from "../App";
 
 class Token extends Component {
@@ -40,24 +40,24 @@ class Token extends Component {
                                 />
                             </Col>
                         </Row>
-                        {/*
                         <Row>
                             <Col xs={8} className="header">Add Minter</Col>
                         </Row>
                         <Row>
-                            <Col xs={3}>New Minter Address</Col>
-                            <Col xs={5}>
+                            <Col xs={2}>New Minter Address</Col>
+                            <Col xs={4}>
                                 <input
                                     type="text"
-                                    ref="newMinterAddress"
+                                    name="newMinterAddress"
                                     style={{width: "200px"}}
+                                    defaultValue={myToken.newMinterAddress}
+                                    onChange={actions.handleInputChange}
                                 />
                             </Col>
                             <Col xs={1}>
-                                <Button type={'submit'} onClick={this.handleButtonClick}> Add </Button>
+                                <Button onClick={actions.addMinter}> Add </Button>
                             </Col>
                         </Row>
-                        */}
                     </Grid>
                 )}
             </AppContext.Consumer>

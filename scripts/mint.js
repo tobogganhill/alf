@@ -5,7 +5,7 @@ const INFURA_KEY = process.env.INFURA_KEY;
 const NFT_CONTRACT_ADDRESS = process.env.NFT_CONTRACT_ADDRESS;
 const OWNER_ADDRESS = process.env.OWNER_ADDRESS;
 const NETWORK = process.env.NETWORK;
-const METADATA_ADDRESS = "https://ipfs.io/ipfs/Qmchtaf3sxTuuaKQKdPgmWKBHaZJrKGhvuErifzASPUxXm";
+const METADATA_ADDRESS = "https://ipfs.io/ipfs/QmcQFfubrmY5Sbrn7zFQSumHav2djmVq8ic6jygLBVB1rF";
 
 if (!MNEMONIC || !INFURA_KEY || !OWNER_ADDRESS || !NETWORK) {
     console.error("Please set a mnemonic, infura key, owner, network, and tokenContract address.");
@@ -39,7 +39,7 @@ async function main() {
     if (NFT_CONTRACT_ADDRESS) {
         const nftContract = new web3Instance.eth.Contract(NFT_ABI, NFT_CONTRACT_ADDRESS, { gasLimit: "1000000" });
 
-        // Creatures issued directly to the owner.
+        // Tokens issued directly to the owner.
         const result = await nftContract.methods.mint(OWNER_ADDRESS, METADATA_ADDRESS).send({ from: OWNER_ADDRESS });
         console.log(result.transactionHash);
     }
