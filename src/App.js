@@ -60,11 +60,11 @@ class App extends Component {
                 activeWallet: '',
                 lastBlockNumber: '',
                 currentBalance: '',
-                tokenAddress: '',
+                tokenAddress: '0x494b2cee761fdfcd6f5be1abefb7a6112b251874',
                 ipfsGateway: 'https://ipfs.infura.io/ipfs/'
             },
             myToken: {
-                address: '',
+                address: '0x494b2cee761fdfcd6f5be1abefb7a6112b251874',
                 abi: tokenContract.abi,
                 imageBuffer: '',
                 ipfsImageHash: '',
