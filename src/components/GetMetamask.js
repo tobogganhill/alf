@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import '../assets/App.css';
 import metamask from '../assets/GetMetamask.png';
 import logo from '../assets/logo.png';
-import {Col} from "react-bootstrap";
 
 class GetMetamask extends Component {
 
@@ -12,7 +11,7 @@ class GetMetamask extends Component {
             <div className='App'>
                 <header className='App-header'>
                     <img src={logo} align='left' className='App-logo' alt='logo'/>
-                    <h1> Mint your Artists' Liberation Front! (ALF) Rare Digital Art Token</h1>
+                    <h1> Mint your Artists' Liberation Front (ALF) Rare Digital Art Token</h1>
                 </header>
                 <div align="center">
                     <h1>Install Metamask</h1>
