@@ -8,7 +8,7 @@ class Home extends Component {
         return (
             <Grid>
                 <Row>
-                    <Col xs={8} className="header">Welcome to Artists Unleashed!</Col>
+                    <Col xs={8} className="header">Welcome to Artists' Liberation Front!</Col>
                 </Row>
                 <Row>
                     <Col xs={8}>
